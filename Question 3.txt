@@ -1,0 +1,19 @@
+fn find_shortest_word(sentence: &str) -> String {
+    // Split the string into words
+    let words: Vec<&str> = sentence.split_whitespace().collect();
+    
+    // Initialize variables to track the shortest word and its length
+    let mut shortest_word = String::from(words[0]);
+    let mut shortest_length = shortest_word.len();
+    
+    // Iterate through the words to find the shortest one
+    for word in words.iter().skip(1) {
+        let length = word.len();
+        if length < shortest_length {
+            shortest_word = String::from(*word);
+            shortest_length = length;
+        }
+    }
+    
+    shortest_word
+}

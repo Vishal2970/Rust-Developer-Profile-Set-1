@@ -1,0 +1,33 @@
+fn partition(arr: &mut [i32], low: usize, high: usize) -> usize {
+    let pivot = arr[high];
+    let mut i = low;
+
+    for j in low..high {
+        if arr[j] < pivot {
+            arr.swap(i, j);
+            i += 1;
+        }
+    }
+    arr.swap(i, high);
+    i
+}
+
+fn quick_select(arr: &mut [i32], k: usize) -> i32 {
+    let len = arr.len();
+    let mut low = 0;
+    let mut high = len - 1;
+
+    while low <= high {
+        let pivot_index = partition(arr, low, high);
+
+        if pivot_index == k {
+            return arr[pivot_index];
+        } else if pivot_index < k {
+            low = pivot_index + 1;
+        } else {
+            high = pivot_index - 1;
+        }
+    }
+    // This return should never be reached if the input is valid
+    return arr[low];
+}

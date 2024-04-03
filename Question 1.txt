@@ -1,0 +1,10 @@
+fn is_palindrome(s: &str) -> bool {
+    // Remove non-alphanumeric characters and convert to lowercase
+    let clean_s: String = s.chars()
+                           .filter(|c| c.is_ascii_alphanumeric())
+                           .map(|c| c.to_ascii_lowercase())
+                           .collect();
+    
+    // Compare the original string with its reverse
+    clean_s == clean_s.chars().rev().collect::<String>()
+}
